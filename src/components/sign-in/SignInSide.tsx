@@ -15,6 +15,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import  Image  from '../../assets/images/agri-drone-thermal.jpg';
 import SpaIcon from '@mui/icons-material/Spa';
 import ifarmTheme from '../../colorPalette';
+import firebaseApp from '../../config';
+import { addDoc, collection, getDocs, getFirestore } from 'firebase/firestore';
+
+const db = getFirestore(firebaseApp);
+const loginsRef = collection(db,"ifarm-logins");
 
 function Copyright(props: any) {
   return (
@@ -39,6 +44,14 @@ export default function SignInSide() {
       email: data.get('email'),
       password: data.get('password'),
     });
+    getDocs(loginsRef).then((response)=>{
+        const docs = response.docs;
+        
+        docs.forEach((doc)=>{
+            let login = doc.data();
+            console.log(login);
+        })
+    })
     return (
         <div>
             <h1>Logged in?</h1>
@@ -62,9 +75,10 @@ export default function SignInSide() {
               t.palette.mode === 'light' ? t.palette.grey[50] : t.palette.grey[900],
             backgroundSize: 'cover',
             backgroundPosition: 'center',
+            borderRadius:'16px 0px 0px 16px',
           }}
         />
-        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+        <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square sx={{borderRadius:'0px 16px 16px 0px',}}>
           <Box
             sx={{
               my: 8,

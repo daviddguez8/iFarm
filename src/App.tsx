@@ -1,16 +1,19 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
 import './App.css';
-import Button from '@mui/material/Button';
 import SignInSide from './components/sign-in/SignInSide';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <>
-      <SignInSide></SignInSide>
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignInSide />}></Route>
+        <Route path="/login" element={<SignInSide />}></Route>
+        <Route path="/signup" element={<SignInSide />}></Route>
+      </Routes>
+    </BrowserRouter>   
   )
   // return (
   //   <div className="App">

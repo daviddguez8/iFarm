@@ -1,7 +1,9 @@
 import { useState } from 'react';
 import './App.css';
-import SignInSide from './components/sign-in/SignInSide';
+import LogIn from './components/sign-in/LogIn';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import SignUp from './components/signUp/SignUp';
+import Dashboard from './components/dashboard/Dashboard';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -9,9 +11,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<SignInSide />}></Route>
-        <Route path="/login" element={<SignInSide />}></Route>
-        <Route path="/signup" element={<SignInSide />}></Route>
+        <Route path="/" element={<LogIn />}></Route>
+        <Route path="/login" element={<LogIn />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/dashboard" element={<Dashboard/>}></Route>
       </Routes>
     </BrowserRouter>   
   )

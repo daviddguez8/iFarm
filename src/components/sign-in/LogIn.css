@@ -1,3 +1,12 @@
+h1, p {
+    color: white;
+
+}
+
+a {
+    color: rgb(31, 181, 54);
+}
+
 .centered {
     display: flex;
     align-items: center;
@@ -7,36 +16,53 @@
 .background {
     height: 100vh;
     width: 100vw;
-    background-image:  url('src/assets/images/agri_thermal_field.jpg');
     padding: 0px;
+    max-width: 100%;
+    position: relative;
 }
 
-.overlay {
-    backdrop-filter: blur(7px);
-    background-color: rgba(65, 65, 65, 0.3);
+.image {
     width: 100%;
     height: 100%;
 }
 
+.icons{
+    flex-direction: row;
+}
+
+.overlay {
+    backdrop-filter: blur(4px);
+    background-color: rgba(65, 65, 65, 0.3);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index:2;
+}
+
 .login-card {
     /*background-color: rgb(194, 203, 195);*/
-    background-color: rgb(194, 203, 195);
-    width: 35%;
-    height: 80%;
+    background-color: rgb(48, 49, 48);
+    width: 30%;
+    height: 90%;
     border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     flex-direction: column;
 }
 
 .green-border {
     border-style: solid;
+    border-width: 1px;
     border-color: rgb(31, 181, 54);
-    border-radius: 15px;
+    border-radius: 10px;
 }
 
 img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    z-index:1;
 }
 
 

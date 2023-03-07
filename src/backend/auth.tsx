@@ -36,6 +36,10 @@ export const createAccount = async (name: string, email: string, password: strin
 }
 
 export const logIn = async (email: string, password: string) => {
+    
+    //WARNING: DEVELOPMENT ONLY REMOVE WHEN PRODUCTION
+    email = "testUser@test.com";
+    password = "test123";
     let correctLogin = false;
 
     await signInWithEmailAndPassword(auth, email, password)

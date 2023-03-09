@@ -5,23 +5,21 @@ import { doc, getFirestore, setDoc } from 'firebase/firestore';
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-export const createProfile = (uid: string, name: string, username: string, email: string) => {
+export const createProfile = async (uid: string, name: string, username: string, email: string, password: string) => {
 
     const newUser = {
         name: name,
         username: username,
-        email: email
-    }
+        email: email,
+        password: password
+    };
 
     const userRef = doc(db, 'profiles', uid);
-    setDoc(userRef, newUser)
+    return await setDoc(userRef, newUser)
     .then(() => {
         console.log('new user added');
+        return true
     }).catch((e)=> {
         console.log(e);
-    })
-
-    
-    return 0;
-
+    });
 }

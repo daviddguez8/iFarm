@@ -1,13 +1,15 @@
 import * as React from 'react';
 import './AppLayout.css';
 import { Button, FloatingLabel, Form, Row, Col, Container} from 'react-bootstrap';
-import { logIn } from '../../backend/auth';
+import { logIn, logOut } from '../../backend/auth';
 import { Link, useNavigate } from 'react-router-dom'
-import NavBar from '../nav/SideNav';
+import NavBar from '../nav/SideNav'; 
 
-import Dashboard from '../screens/Dashboard';
+import Dashboard from '../dashboard/Dashboard';
 
 export default function AppLayout() {
+
+    const navigate = useNavigate();
 
     const selectedClassNames = ['navbar-button', 'mb-1', 'selected'];
     const unselectedClassNames = ['navbar-button', 'mb-1'];
@@ -19,8 +21,6 @@ export default function AppLayout() {
     const [earningsClassNames, setEarningsClassNames] = React.useState(['navbar-button', 'mb-1']);
 
     const [currentScreen, setCurrentScreen] = React.useState(0);
-
-    const content = React.useRef(NavBar);
     
     const classNamesSetters = [
         setDashboardClassNames,
@@ -28,7 +28,7 @@ export default function AppLayout() {
         setInventoryClassNames,
         setShipmentsClassNames,
         setEarningsClassNames
-    ]
+    ];
 
     const screenNames = [
         'dashboard',
@@ -36,21 +36,23 @@ export default function AppLayout() {
         'inventory',
         'shipments',
         'earnings'
-    ]
+    ];
 
     const sectionChange = (e: React.MouseEvent, selection: number) => {
-        console.log('unsetting: ' + currentScreen);
         classNamesSetters[currentScreen](unselectedClassNames)
-        console.log('setting: ' + selection);
         classNamesSetters[selection](selectedClassNames);
         setCurrentScreen(selection);
+    }
+
+    const logOutClicked = async (e: React.MouseEvent) => {
+        e.preventDefault();
+        await logOut();
+        navigate('/login');
     }
 
     return (
         <Container fluid className="main">
             <Col md={2} className="my-navbar">
-                
-
                 <div className="mb-5">
                     <img src="src\assets\logo.png"></img>
                 </div>
@@ -105,31 +107,23 @@ export default function AppLayout() {
                         </Col>
                     </Row>
 
-                </Row>
-                
-                
-                
+                </Row>            
             </Col>
             
             <Col>
                 <Row className="topbar" style={{margin: 0}}>
-                    <Col>
-                        Sign out
+                    <Col md={2}>
+                    <Button onClick={(e)=>{logOutClicked(e)}} variant="outline-dark" className="sign-out-btn">Sign Out</Button>
                     </Col>
-                    <Col>
-                    Help
-                    </Col>
+                    
                 </Row>
 
-                <Row className="content" style={{margin: 0, padding: 5}}>
-                    <div>
-                        {currentScreen == 0 && <Dashboard></Dashboard>}
-                        {currentScreen == 1 && <div>field</div>}
-                        {currentScreen == 2 && <div>inventory</div>}
-                        {currentScreen == 3 && <div>shipments</div>}
-                        {currentScreen == 4 && <div>earnings</div>}
-
-                    </div>
+                <Row className="content" >
+                    {currentScreen == 0 && <Dashboard></Dashboard>}
+                    {currentScreen == 1 && <div>field</div>}
+                    {currentScreen == 2 && <div>inventory</div>}
+                    {currentScreen == 3 && <div>shipments</div>}
+                    {currentScreen == 4 && <div>earnings</div>}
                 </Row>
             </Col>
         </Container>

@@ -60,6 +60,7 @@
 }
 
 .topbar {
+    display: flex;
     background-color: #12181F;
     align-items: center;
     justify-content: flex-start;
@@ -68,10 +69,16 @@
     width: 100%;
 }
 
+.sign-out-btn {
+    color: white;
+}
+
 .content{ 
    flex: 1;
    justify-content: center;
    align-items: center;
    height: 92%;
    width:100%;
+   padding: 10px;
+   margin: 0px;
 }

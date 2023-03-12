@@ -10,7 +10,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-export default function BarChart2() {
+export default function BarChar() {
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -34,7 +34,7 @@ export default function BarChart2() {
             },
             title: {
             display: false,
-            text: 'Chart.js Horizontal Bar Chart',
+            text: 'Sector #',
             },
         },
     };
@@ -48,8 +48,8 @@ export default function BarChart2() {
         {
           label: 'Dataset 1',
           data: labels.map(() => Math.floor(Math.random() * (10 - 0 + 1))),
-          borderColor: 'rgb(255, 99, 132)',
-          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+          borderColor: 'rgb(77, 199, 251)',
+          backgroundColor: 'rgba(0, 179, 255, 0.5)',
         },
       ]
     };

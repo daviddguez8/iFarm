@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import NavBar from '../nav/SideNav'; 
 
 import Dashboard from '../dashboard/Dashboard';
+import { FieldMap } from '../map/FieldMap';
 
 export default function AppLayout() {
 
@@ -110,7 +111,7 @@ export default function AppLayout() {
                 </Row>            
             </Col>
             
-            <Col>
+            <Col md={10}>
                 <Row className="topbar" style={{margin: 0}}>
                     <Col md={2}>
                     <Button onClick={(e)=>{logOutClicked(e)}} variant="outline-dark" className="sign-out-btn">Sign Out</Button>
@@ -120,7 +121,7 @@ export default function AppLayout() {
 
                 <Row className="content" >
                     {currentScreen == 0 && <Dashboard></Dashboard>}
-                    {currentScreen == 1 && <div>field</div>}
+                    {currentScreen == 1 && <FieldMap/>}
                     {currentScreen == 2 && <div>inventory</div>}
                     {currentScreen == 3 && <div>shipments</div>}
                     {currentScreen == 4 && <div>earnings</div>}

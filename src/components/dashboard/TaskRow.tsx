@@ -13,10 +13,9 @@ export default function TaskRow(props: TaskProps) {
                 {props.title}
             </Col>
             <Col>
-                <Button style={{marginRight:"0.5rem"}} variant="outline-success"></Button>
-                <Button variant="outline-danger"></Button>
+                <Button size="lg" style={{marginRight:"1.2rem"}} variant="outline-success"></Button>
+                <Button size="lg"variant="outline-danger"></Button>
             </Col>
-            
         </Container>
         </>
     );

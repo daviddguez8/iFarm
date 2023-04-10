@@ -5,7 +5,7 @@ import { fetchInventory } from '../../../backend/inventory';
 import './ShipmentsTable.css';
 import { fetchShipments } from '../../../backend/shipments';
 
-export default function ShipmentsTable(props: any) {
+export default function ShipmentsTable() {
   const [shipmentsData, setShipmentsData] = useState<any[][]>([]);
 
   useEffect(() => {

@@ -4,8 +4,8 @@ import ifarmTheme from '../../colorPalette';
 import './SignUp.css';
 import { Button, FloatingLabel, Form, Row, Col, Container} from 'react-bootstrap';
 import { createAccount } from '../../backend/auth';
-import { Link, useNavigate, redirect } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
+import thermalFieldImg from '/images/agri_thermal_field.jpg'
 const theme = ifarmTheme;
 
 export default function SignUp() {
@@ -32,7 +32,7 @@ export default function SignUp() {
   return (
     <Container className="background centered">
       <div className="centered image">
-        <img src='src/assets/images/agri_thermal_field.jpg'>
+        <img src={thermalFieldImg}>
         </img>
       </div>
       

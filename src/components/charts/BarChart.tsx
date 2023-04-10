@@ -10,7 +10,10 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 
-export default function BarChar() {
+export interface BarChartProps {
+  data: [number, number, number, number]
+}
+export default function BarChart(props: BarChartProps) {
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -47,7 +50,7 @@ export default function BarChar() {
       datasets: [
         {
           label: 'Dataset 1',
-          data: labels.map(() => Math.floor(Math.random() * (10 - 0 + 1))),
+          data: props.data,
           borderColor: 'rgb(77, 199, 251)',
           backgroundColor: 'rgba(0, 179, 255, 0.5)',
         },

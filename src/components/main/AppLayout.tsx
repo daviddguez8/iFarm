@@ -3,7 +3,8 @@ import './AppLayout.css';
 import { Button, FloatingLabel, Form, Row, Col, Container} from 'react-bootstrap';
 import { logIn, logOut } from '../../backend/auth';
 import { Link, useNavigate } from 'react-router-dom'
-import NavBar from '../nav/SideNav'; 
+import NavBar from '../nav/SideNav';
+import logoImage from '/logo.png'; 
 
 import Dashboard from '../dashboard/Dashboard';
 import { FieldMap } from '../map/FieldMap';
@@ -55,7 +56,7 @@ export default function AppLayout() {
         <Container fluid className="main">
             <Col md={2} className="my-navbar">
                 <div className="mb-5">
-                    <img src="src\assets\logo.png"></img>
+                    <img src={logoImage}></img>
                 </div>
 
                 <Row className="navbar-btns-container">

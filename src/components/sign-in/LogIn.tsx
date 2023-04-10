@@ -4,7 +4,9 @@ import ifarmTheme from '../../colorPalette';
 import './LogIn.css';
 import { Button, FloatingLabel, Form, Row, Col, Container} from 'react-bootstrap';
 import { logIn } from '../../backend/auth';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom';
+import thermalFieldImg from '/images/agri_thermal_field.jpg';
+
 const theme = ifarmTheme;
 
 export default function LogIn() {
@@ -27,7 +29,7 @@ export default function LogIn() {
   return (
     <Container className="background centered">
       <div className="centered image">
-        <img src='src/assets/images/agri_thermal_field.jpg'>
+        <img src={thermalFieldImg}>
         </img>
       </div>
       

@@ -2,7 +2,7 @@
     height: 1px;
     background-color: rgb(255, 255, 255);
     border: none;
-    margin: 20px 0;
+    margin: 10px 0;
 }
 
 .task {
@@ -16,4 +16,9 @@
 
 .task:hover {
     background-color: #0b0f14;;   
+}
+
+.add-task-input, .add-task-input:focus {
+    background-color: transparent;
+    color: white
 }

@@ -6,7 +6,7 @@ import { Button, FloatingLabel, Form, Row, Col, Container} from 'react-bootstrap
 import { logIn } from '../../backend/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import thermalFieldImg from '/images/agri_thermal_field.jpg';
-
+//TEST
 const theme = ifarmTheme;
 
 export default function LogIn() {

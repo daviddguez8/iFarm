@@ -68,7 +68,6 @@ export default function AppLayout() {
                             <div style={{height:'100%'}}>
                                 Dashboard
                             </div>
-                            
                         </Col>
                     </Row>
 

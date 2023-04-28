@@ -1,13 +1,9 @@
 import * as React from 'react';
-import Typography from '@mui/material/Typography';
-import ifarmTheme from '../../colorPalette';
-import './LogIn.css';
 import { Button, FloatingLabel, Form, Row, Col, Container} from 'react-bootstrap';
 import { logIn } from '../../backend/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import thermalFieldImg from '/images/agri_thermal_field.jpg';
-
-const theme = ifarmTheme;
+import './LogIn.css';
 
 export default function LogIn() {
 

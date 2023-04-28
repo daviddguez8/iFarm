@@ -2,20 +2,20 @@ import { ReactNode, useEffect } from 'react';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
-import { fetchMapData } from '../../backend/fieldMap';
+import { fetchMapData, harvestSector, waterSector } from '../../backend/fieldMap';
 import MapboxDraw from "@mapbox/mapbox-gl-draw";
 import ReactDOMServer from 'react-dom/server';
-import BarChart from '../charts/BarChart';
-
-//mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRkZ3VlejgiLCJhIjoiY2xnOGZ4NHE3MGQ5czNnbzNuZWRsNDF5MyJ9.qLpmGgjRUKP2IsyOcjqI_A';
 
 //Public token
-mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRkZ3VlejgiLCJhIjoiY2xnOGVsMGM0MHZ1MTNybjVhOHJvbzYzcSJ9.mIZHW4eAwgDi5PM8RC86sw';
+//mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRkZ3VlejgiLCJhIjoiY2xnOGVsMGM0MHZ1MTNybjVhOHJvbzYzcSJ9.mIZHW4eAwgDi5PM8RC86sw';
 
+//AirFarm Fields
+mapboxgl.accessToken = 'pk.eyJ1IjoiZGF2aWRkZ3VlejgiLCJhIjoiY2xnOGZ4NHE3MGQ5czNnbzNuZWRsNDF5MyJ9.qLpmGgjRUKP2IsyOcjqI_A';
 
 export function FieldMap() {
   let map: mapboxgl.Map | null = null;
 
+  
   useEffect(() => {
     if (!map) {
 
@@ -49,17 +49,37 @@ export function FieldMap() {
             }
           });
 
-          map!.on('click', sector.name, function (e) {
+          map!.on('click', sector.name,  (e) => {
+            
             // Get the feature that was clicked
             // Create the popup
             const popup = new mapboxgl.Popup({
               closeButton: true,
               closeOnClick: true
             });
-            //.setHTML(ReactDOMServer.renderToString(<BarChart data={[0,1,2,3]}/>))
             popup.setHTML(createPopupContent(sector));
+            
+            // Display the popup
+            popup.setLngLat(e.lngLat).addTo(map!);
 
-            popup.setLngLat(e.lngLat).addTo(map!)
+            
+            //Adding event listeners to the buttons so that user can take actions on sectors
+
+            const waterButton = document.getElementById('water-'+sector.name);
+            waterButton?.addEventListener('click', (e) => {
+              e.preventDefault();
+              console.log('watering sector' + sector.name);
+              
+              waterSector(sector.name);
+            });
+
+            const harvestButton = document.getElementById('harvest-'+sector.name);
+            
+            harvestButton?.addEventListener('click', (e) => {
+              e.preventDefault();
+              
+              harvestSector(sector.name);
+            });
           });
         }
 
@@ -112,17 +132,25 @@ export function FieldMap() {
   }, []);
 
   const createPopupContent = (sector: any) => {
-    console.log(ReactDOMServer.renderToString(<BarChart data={[0,1,2,3]}/>));
-    
-    return  '<h3>'+ 
-              sector.name+ 
-            '</h3>'+
-            '<ul style="color: black">' + 
-             '<li>Humidity:'+sector.humidity+'</li>'+
-             '<li>Health:'+sector.health+'</li>'+
-             '<li>Volume:'+sector.volume+'</li>'+
-             '<li>Harvest:'+sector.harvest+ '</li>'+
-            '</ul>';
+
+    let popupContent = 
+      '<h3>' +
+      sector.name +
+      '</h3>' +
+      '<ul style="color: black">' +
+      '<li>Humidity:' + sector.humidity + '</li>' +
+      '<li>Health:' + sector.health + '</li>' +
+      '<li>Volume:' + sector.volume + '</li>' +
+      '<li>Harvest:' + sector.harvest + '</li>' +
+      '</ul>';
+
+    if (sector.humidity < 10) {
+      popupContent += "<button style='background-color: blue' id='water-"+sector.name+"'>Water</button>";
+    }
+    if (sector.harvest == 10) {
+      popupContent += "<button style='background-color: green' id='harvest-"+sector.name+"'>Harvest</button>";
+    }
+    return popupContent 
   }
 
   return (

@@ -16,9 +16,7 @@ a {
 .background {
     height: 100vh;
     width: 100vw;
-    padding: 0px;
-    max-width: 100%;
-    position: relative;
+    padding: 0;
 }
 
 .image {
